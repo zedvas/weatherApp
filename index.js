@@ -30,30 +30,23 @@ async function getWeather(lat, long) {
   result = await result.json();
 
   //retrieve relevant data - create function later if the code gets too long
-  console.log(result.list[0]);
   const {
     city: { name: city, country },
   } = result;
   createHTML(city, "p", root);
   createHTML(country, "p", root);
-for (let i=0; i<result.list.length; i++) {
+  console.log(result.list[1]);
+  for (let i = 0; i < result.list.length; i++) {
     const listObject = result.list[i];
-    const {main:{temp, feels_like}, weather} = listObject;
-    const {icon , description} = weather[0];
-        console.log(temp, feels_like, icon, description);
-    // res.main.temp,res.main.feels_like, res.weather[0].description, res.weather[0].icon} = weather;
-}
-  const weatherObj = {};
-  const res = result.list[0];
-//   console.log(
-//     res.main.temp,
-//     res.main.feels_like,
-//     res.weather[0].description,
-//     res.weather[0].icon
-//   );
-
-  //main: temp, feels_like,
-  //weather[0]:desciption.icom
+    const {dt_txt:date,
+      main: { temp, feels_like },
+      weather,
+    } = listObject;
+    const { icon, description } = weather[0];
+[date, temp, feels_like, icon, description].forEach(data=> {
+    createHTML(data, "p", root);
+})
+  }
 }
 
 //function to create html prgramatically w params(text, el, parent)
