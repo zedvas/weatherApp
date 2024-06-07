@@ -1,0 +1,32 @@
+:root {
+    $snow-primary: #BFD7EA;
+    $snow-secondary: #A2708A;
+    $rain-primary:#0B3954;
+    $rain-secondary:#F5EDF0;
+    $clouds-primary: #087E8B;
+    $clouds-secondary: #65532F;
+    $sun-primary: #ce2d35; 
+    $sun-secondary: #FFA630;
+}
+
+.sun {
+    background-color: var(--sun-primary);
+    color: var(--sun-secondary);
+}
+.snow {
+    background-color: var(--snow-primary);
+    color: var(--snow-secondary);
+}
+.rain {
+    background-color: var(--rain-primary);
+    color: var(--rain-secondary);
+}
+.clouds {
+    background-color: var(--clouds-primary);
+    color: var(--clouds-secondary);
+}
+
+------------------
+.temp::after {
+    content:"&deg";
+}
