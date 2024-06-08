@@ -22,11 +22,12 @@ function doSomethingWithWeather(result) {
   //retrieve weather info
   for (let i = 0; i < result.list.length; i++) {
     const weatherEntry = result.list[i];
-console.log(weatherEntry.dt_txt, weatherEntry.main.temp)
-checkHighestTempPerDay(weatherEntry,highestTempPerDay)
-}  console.log(highestTempPerDay);
+    checkHighestTempPerDay(weatherEntry, highestTempPerDay);
+  };
 
 }
+
+
 export default doSomethingWithWeather;
 
 //then loop over new obj and do teh below.
