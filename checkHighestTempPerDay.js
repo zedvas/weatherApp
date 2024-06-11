@@ -1,5 +1,6 @@
 function checkHighestTempPerDay(weatherEntry, obj) {
 
+
 //grab date and temp
   const date = new Date(weatherEntry.dt * 1000).getDay();
   const temp = weatherEntry.main.temp;

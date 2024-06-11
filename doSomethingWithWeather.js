@@ -13,11 +13,13 @@ function doSomethingWithWeather(result) {
     city: { name: city, country },
   } = result;
 
-  createHTML(city, "p", root);
+  createHTML(city, "p", root); //fix this as createHTML mod has changed and no loneger includes parent
   createHTML(country, "p", root);
 
   //empty obj to hold highest temp per day
-  const highestTempPerDay = {};
+  const highestTempPerDay = [];   
+  const days = [];                //could think of better way to get highest temp directly in array rather than moving to highest obj then creating array from that. but too far in now and involces refactoring the whole of this module.
+
 
   //retrieve weather info
   for (let i = 0; i < result.list.length; i++) {
@@ -25,7 +27,7 @@ function doSomethingWithWeather(result) {
     checkHighestTempPerDay(weatherEntry, highestTempPerDay);
   }
   //then loop over new obj containing highest temps per day.
-  for (const [key, val] in highestTempPerDay) {
+  for (const [key] in highestTempPerDay) {
     //destructure result obj and grab relevant data
     let {
       dt: timestamp,
@@ -35,11 +37,15 @@ function doSomethingWithWeather(result) {
     const { main, icon } = weather[0];
     temp = Math.round(temp - 273.15);
     const date = new Date(timestamp * 1000);
-    const arr = [date, temp, main, icon];
+    const obj = {timestamp, date, temp, main, icon};
+    days.push(obj)
   }
+  
+//loop over final days array, sort and create html
+console.log(days)
+
 }
 
-//could think of better way to get highest temp directly in array rather than moving to obj then creating array from that. but too far in now and involces refactoring the whole of this module.
 
 export default doSomethingWithWeather;
 
