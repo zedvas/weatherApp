@@ -15,7 +15,6 @@ function checkHighestTempPerDay(weatherEntry, obj) {
       obj[date] = weatherEntry;
     }
   }
-
   return obj;
 }
 

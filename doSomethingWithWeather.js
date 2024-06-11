@@ -23,18 +23,27 @@ function doSomethingWithWeather(result) {
   for (let i = 0; i < result.list.length; i++) {
     const weatherEntry = result.list[i];
     checkHighestTempPerDay(weatherEntry, highestTempPerDay);
-  };
-
+  }
+  //then loop over new obj containing highest temps per day.
+  for (const [key, val] in highestTempPerDay) {
+    //destructure result obj and grab relevant data
+    let {
+      dt: timestamp,
+      main: { temp },
+      weather,
+    } = highestTempPerDay[key];
+    const { main, icon } = weather[0];
+    temp = Math.round(temp - 273.15);
+    const date = new Date(timestamp * 1000);
+    const arr = [date, temp, main, icon];
+  }
 }
 
+//could think of better way to get highest temp directly in array rather than moving to obj then creating array from that. but too far in now and involces refactoring the whole of this module.
 
 export default doSomethingWithWeather;
 
-//then loop over new obj and do teh below.
-
-//destructure result obj and grab relevant data
 //     //convert temp and add to highestTemp obj
-//     temp = Math.round(temp - 273.15);
 
 //     //format date
 //     const days = [
@@ -47,18 +56,18 @@ export default doSomethingWithWeather;
 //       "saturday",
 //     ];
 //     const months = [
-//       "jan",
-//       "feb",
-//       "mar",
-//       "apr",
+//       "january",
+//       "february",
+//       "march",
+//       "april",
 //       "may",
-//       "jun",
-//       "jul",
-//       "aug",
-//       "sep",
-//       "oct",
-//       "nov",
-//       "dec",
+//       "june",
+//       "july",
+//       "august",
+//       "september",
+//       "october",
+//       "november",
+//       "december",
 //     ];
 //     let dateString = new Date(dateTimestamp * 1000);
 
