@@ -31,16 +31,8 @@ body {
 .container {
   padding: 100px 0;
   width: 80vw;
-  height: 100%;
   max-width: 1600px;
   position: relative;
-}
-
-.nav-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 input {
@@ -72,7 +64,8 @@ input::placeholder {
   color: #a2708a;
 }
 
-.snow input, .snow input::placeholder {
+.snow input,
+.snow input::placeholder {
   color: #a2708a;
 }
 
@@ -156,4 +149,30 @@ input::placeholder {
   border-radius: 50%;
   background-color: #ce2d35;
   border: 50px solid black;
+}
+
+.decoration {
+  background-color: rgba(0, 0, 0, 0.319);
+}
+
+.line {
+  left: 0px;
+  top: 600px;
+  height: 20px;
+  width: 400px;
+  position: absolute;
+}
+
+.line2 {
+  top: 650px;
+  width: 300px;
+}
+
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  position: relative;
+  top: 100px;
+  right: -75px;
 }/*# sourceMappingURL=styles.css.map */
