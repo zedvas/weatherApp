@@ -1,6 +1,10 @@
 import createHTML from "./createHTML.js";
 import checkHighestTempPerDay from "./checkHighestTempPerDay.js";
-import { containerRef, infoContainerRef, linksContainerRef } from "./domReferences.js";
+import {
+  containerRef,
+  infoContainerRef,
+  linksContainerRef,
+} from "./domReferences.js";
 
 /*handle api result takes in result from fetch 
 loops through result and for each entry
@@ -9,7 +13,6 @@ the obj gets returned
 loop over object, modify data to display as you wish and create html */
 
 function handleWeather(result) {
-
   //retrieve location info and add to dom
   const {
     city: { name: city, country },
@@ -25,32 +28,62 @@ function handleWeather(result) {
 
   //create set fo unique dates from results list and use to create links
   const datesSet = new Set();
+
   result.list.forEach((weatherEntry) => {
     const timestamp = new Date(weatherEntry.dt * 1000);
     const date = timestamp.getDate();
     datesSet.add(date);
   });
 
-for (const date of datesSet) {
-const linkRef = createHTML(date, "a", "link")
-linkRef.href = "#";
-linksContainerRef.append(linkRef)
-}
-console.log(linksContainerRef);
-  console.log(datesSet);
+  for (const date of datesSet) {
+    const linkRef = createHTML(date, "a", "link");
+    linkRef.href = "#";
 
+    //add event listener to link and set class of 'active' on all timestamps for that day
+    linkRef.addEventListener("click", (e) => {
+      const clickedDate = e.target.innerText;
+      linksContainerRef.append(linkRef);
+    });
+  }
 
+  //retrieve info and create dom elems for all results
+      const weatherEntryContainerRef = createHTML(
+      null,
+      "div",
+      "weatherEntryContainer"
+    );
+result.list.forEach((weatherEntry) => {
+    const timestamp = new Date(weatherEntry.dt * 1000);
+    const date = timestamp.getDate();
 
+    let {
+      main: { temp, humidity },
+      weather,
+      wind: { speed: windspeed },
+    } = weatherEntry;
+    const { description: desc, icon } = weather[0];
+    let rain = weatherEntry.rain || 0;
+    if (rain) {
+      rain = rain["3h"];
+    }
+    temp = Math.round(temp - 273.15);
 
-
-
-
-
-
-
-
-
-
+    [
+      timestamp,
+      timestamp.getTime(),
+      date,
+      humidity,
+      temp,
+      windspeed,
+      desc,
+      icon,
+      rain,
+    ].forEach((dataPoint) => {
+      const _dataPoint = createHTML(dataPoint, "p");
+      weatherEntryContainerRef.append(_dataPoint);
+    });
+  });
+  containerRef.append(weatherEntryContainerRef)
 
   //empty obj to hold highest temp per day
   const highestTempPerDay = [];
@@ -124,3 +157,5 @@ export default handleWeather;
 //     //loop through
 
 //make sure order of appending is all correct
+
+//by default make the first date be active
