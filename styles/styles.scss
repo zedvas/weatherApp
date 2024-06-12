@@ -49,6 +49,9 @@ body {
 //   justify-content: center;
 //   align-items: center;
 // }
+form {
+  text-align: center;
+}
 input {
   width: 50%;
   min-width: 500px;
@@ -72,7 +75,7 @@ input::placeholder {
   color: $snow-secondary;
 }
 .linksContainer {
-  width: 90%;
+  width: 100%;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -162,8 +165,8 @@ input::placeholder {
   left: 0px;
   top: 600px;
   height: 20px;
-  width: 400px;  position: absolute;
-
+  width: 400px;
+  position: absolute;
 }
 
 .line2 {
@@ -174,9 +177,13 @@ input::placeholder {
 
 .circle {
   height: 100px;
-  width:100px;
+  width: 100px;
   border-radius: 50%;
-  position:relative;
-  top:100px;
-  right:-75px
+  position: relative;
+  top: 100px;
+  right: -75px;
+}
+
+.weatherEntryContainer {
+  border: 1px  solid grey;
 }

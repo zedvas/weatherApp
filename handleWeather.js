@@ -52,13 +52,13 @@ function handleWeather(result) {
   }
 
   //retrieve info and create dom elems for all results
-  const weatherEntryContainerRef = createHTML(
-    null,
-    "div",
-    "weatherEntryContainer"
-  );
   result.list.forEach((weatherEntry) => {
-    const timestamp = new Date(weatherEntry.dt * 1000);
+    console.log(weatherEntry.activeDay)
+          if (weatherEntry.activeDay) {
+            console.log("heyhh")
+        weatherEntryContainerRef.classList.add("activeDay")
+      }
+const timestamp = new Date(weatherEntry.dt * 1000);
     const date = timestamp.getDate();
 
     let {
@@ -72,7 +72,12 @@ function handleWeather(result) {
       rain = rain["3h"];
     }
     temp = Math.round(temp - 273.15);
-
+    const weatherEntryContainerRef = createHTML(
+      null,
+      "div",
+      "weatherEntryContainer"
+    );
+  
     [
       timestamp,
       timestamp.getTime(),
@@ -86,12 +91,9 @@ function handleWeather(result) {
     ].forEach((dataPoint) => {
       const _dataPoint = createHTML(dataPoint, "p");
       weatherEntryContainerRef.append(_dataPoint);
-      if (weatherEntry.activeDay) {
-        weatherEntryContainerRef.classList.add("activeDay")
-      }
-    });
+    });  containerRef.append(weatherEntryContainerRef);
+
   });
-  containerRef.append(weatherEntryContainerRef);
 }
 
 export default handleWeather;

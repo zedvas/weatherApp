@@ -35,6 +35,10 @@ body {
   position: relative;
 }
 
+form {
+  text-align: center;
+}
+
 input {
   width: 50%;
   min-width: 500px;
@@ -70,7 +74,7 @@ input::placeholder {
 }
 
 .linksContainer {
-  width: 90%;
+  width: 100%;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -175,4 +179,8 @@ input::placeholder {
   position: relative;
   top: 100px;
   right: -75px;
+}
+
+.weatherEntryContainer {
+  border: 1px solid grey;
 }/*# sourceMappingURL=styles.css.map */
