@@ -1,7 +1,6 @@
 import createHTML from "./createHTML.js";
 import getWeather from "./getWeather.js";
-
-const rootRef = document.getElementById("root");
+import {rootRef, containerRef} from './domReferences.js'
 
 //create input field
 const inputRef = document.createElement("input");
@@ -10,7 +9,8 @@ inputRef.placeholder = "search a city here";
 const formRef = document.createElement("form");
 
 formRef.append(inputRef);
-rootRef.append(formRef)
+containerRef.append(formRef);
+rootRef.append(containerRef)
 
 //add event listener to input
 let searchTerm, lat, lon;
@@ -37,3 +37,4 @@ function error(err) {
 }
 
 //might need to do something to make sure there's no race condition (?) between search and navigation
+//checek what order everything is being appended

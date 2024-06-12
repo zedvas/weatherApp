@@ -1,9 +1,14 @@
 //function to create html prgramatically w params(text, el, parent)
-function createHTML(text, element) {
+function createHTML(text, element, className) {
+  let _element = document.createElement(element);
+  if (text) {
     let _text = document.createTextNode(text);
-    let _element = document.createElement(element);
     _element.append(_text);
-    return;
   }
+  if (className) {
+    _element.classList.add(className);
+  }
+  return _element;
+}
 
-  export default createHTML;
+export default createHTML;

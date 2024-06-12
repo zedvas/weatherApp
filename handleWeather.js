@@ -1,5 +1,6 @@
 import createHTML from "./createHTML.js";
 import checkHighestTempPerDay from "./checkHighestTempPerDay.js";
+import { containerRef, infoContainerRef, linksContainerRef } from "./domReferences.js";
 
 /*handle api result takes in result from fetch 
 loops through result and for each entry
@@ -7,19 +8,53 @@ it checks against external object for highest highestTemp
 the obj gets returned
 loop over object, modify data to display as you wish and create html */
 
-function doSomethingWithWeather(result) {
-  //retrieve location info
+function handleWeather(result) {
+
+  //retrieve location info and add to dom
   const {
     city: { name: city, country },
   } = result;
 
-  createHTML(city, "p", root); //fix this as createHTML mod has changed and no loneger includes parent
-  createHTML(country, "p", root);
+  const cityPTag = createHTML(city, "p", "city");
+  const countryPTag = createHTML(country, "p", "country");
+  const locationDivTag = createHTML(null, "div", "location");
+  locationDivTag.append(cityPTag);
+  locationDivTag.append(countryPTag);
+  infoContainerRef.append(locationDivTag);
+  containerRef.append(infoContainerRef);
+
+  //create set fo unique dates from results list and use to create links
+  const datesSet = new Set();
+  result.list.forEach((weatherEntry) => {
+    const timestamp = new Date(weatherEntry.dt * 1000);
+    const date = timestamp.getDate();
+    datesSet.add(date);
+  });
+
+for (const date of datesSet) {
+const linkRef = createHTML(date, "a", "link")
+linkRef.href = "#";
+linksContainerRef.append(linkRef)
+}
+console.log(linksContainerRef);
+  console.log(datesSet);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //empty obj to hold highest temp per day
-  const highestTempPerDay = [];   
-  const days = [];                //could think of better way to get highest temp directly in array rather than moving to highest obj then creating array from that. but too far in now and involces refactoring the whole of this module.
-
+  const highestTempPerDay = [];
+  const days = []; //could think of better way to get highest temp directly in array rather than moving to highest obj then creating array from that. but too far in now and involces refactoring the whole of this module.
 
   //retrieve weather info
   for (let i = 0; i < result.list.length; i++) {
@@ -37,17 +72,14 @@ function doSomethingWithWeather(result) {
     const { main, icon } = weather[0];
     temp = Math.round(temp - 273.15);
     const date = new Date(timestamp * 1000);
-    const obj = {timestamp, date, temp, main, icon};
-    days.push(obj)
+    const obj = { timestamp, date, temp, main, icon };
+    days.push(obj);
   }
-  
-//loop over final days array, sort and create html
-console.log(days)
 
+  //loop over final days array, sort and create html
 }
 
-
-export default doSomethingWithWeather;
+export default handleWeather;
 
 //     //convert temp and add to highestTemp obj
 
@@ -90,3 +122,5 @@ export default doSomethingWithWeather;
 //     // decide what to do with icon
 //     //append these to correct parents. decide where to declare parents.
 //     //loop through
+
+//make sure order of appending is all correct
