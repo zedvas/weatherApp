@@ -6,12 +6,6 @@ import {
   linksContainerRef,
 } from "./domReferences.js";
 
-/*handle api result takes in result from fetch 
-loops through result and for each entry
-it checks against external object for highest highestTemp
-the obj gets returned
-loop over object, modify data to display as you wish and create html */
-
 function handleWeather(result) {
   //retrieve location info and add to dom
   const {
@@ -38,21 +32,32 @@ function handleWeather(result) {
   for (const date of datesSet) {
     const linkRef = createHTML(date, "a", "link");
     linkRef.href = "#";
+    linksContainerRef.append(linkRef);
 
     //add event listener to link and set class of 'active' on all timestamps for that day
     linkRef.addEventListener("click", (e) => {
       const clickedDate = e.target.innerText;
-      linksContainerRef.append(linkRef);
+
+      result.list.forEach((weatherEntry) => {
+        const timestamp = new Date(weatherEntry.dt * 1000);
+        const date = timestamp.getDate();
+        if (date == clickedDate) {
+          weatherEntry.activeDay = true;
+        } else {
+          weatherEntry.activeDay = false;
+        }
+      });
+      console.log(result.list);
     });
   }
 
   //retrieve info and create dom elems for all results
-      const weatherEntryContainerRef = createHTML(
-      null,
-      "div",
-      "weatherEntryContainer"
-    );
-result.list.forEach((weatherEntry) => {
+  const weatherEntryContainerRef = createHTML(
+    null,
+    "div",
+    "weatherEntryContainer"
+  );
+  result.list.forEach((weatherEntry) => {
     const timestamp = new Date(weatherEntry.dt * 1000);
     const date = timestamp.getDate();
 
@@ -81,35 +86,12 @@ result.list.forEach((weatherEntry) => {
     ].forEach((dataPoint) => {
       const _dataPoint = createHTML(dataPoint, "p");
       weatherEntryContainerRef.append(_dataPoint);
+      if (weatherEntry.activeDay) {
+        weatherEntryContainerRef.classList.add("activeDay")
+      }
     });
   });
-  containerRef.append(weatherEntryContainerRef)
-
-  //empty obj to hold highest temp per day
-  const highestTempPerDay = [];
-  const days = []; //could think of better way to get highest temp directly in array rather than moving to highest obj then creating array from that. but too far in now and involces refactoring the whole of this module.
-
-  //retrieve weather info
-  for (let i = 0; i < result.list.length; i++) {
-    const weatherEntry = result.list[i];
-    checkHighestTempPerDay(weatherEntry, highestTempPerDay);
-  }
-  //then loop over new obj containing highest temps per day.
-  for (const [key] in highestTempPerDay) {
-    //destructure result obj and grab relevant data
-    let {
-      dt: timestamp,
-      main: { temp },
-      weather,
-    } = highestTempPerDay[key];
-    const { main, icon } = weather[0];
-    temp = Math.round(temp - 273.15);
-    const date = new Date(timestamp * 1000);
-    const obj = { timestamp, date, temp, main, icon };
-    days.push(obj);
-  }
-
-  //loop over final days array, sort and create html
+  containerRef.append(weatherEntryContainerRef);
 }
 
 export default handleWeather;
@@ -148,14 +130,7 @@ export default handleWeather;
 
 //     dateString = `${day} ${date} ${month} ${dateString.getHours()}`;
 
-//     //create HTML
-//     createHTML(dateString, "p", root);
-//     createHTML(temp, "h1", root);
-//     createHTML(description, "h2", root);
-//     // decide what to do with icon
-//     //append these to correct parents. decide where to declare parents.
-//     //loop through
-
 //make sure order of appending is all correct
 
 //by default make the first date be active
+//move event handler funcs to seperate file
