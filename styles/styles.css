@@ -1,0 +1,186 @@
+:root {
+  font-family: "IBM Plex Sans";
+}
+
+.sun {
+  background-color: #ffa630;
+  color: #f5edf0;
+}
+
+.snow {
+  background-color: #bfd7ea;
+  color: #a2708a;
+}
+
+.rain {
+  background-color: #0b3954;
+  color: #f5edf0;
+}
+
+.clouds {
+  background-color: #087e8b;
+  color: #f5edf0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.container {
+  padding: 100px 0;
+  width: 80vw;
+  max-width: 1600px;
+  position: relative;
+}
+
+form {
+  text-align: center;
+}
+
+input {
+  width: 50%;
+  min-width: 500px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #f5edf0;
+  color: #f5edf0;
+  padding: 0.8em 0;
+  font-size: 2.4rem;
+  margin-bottom: 2em;
+}
+
+input::-moz-placeholder {
+  color: #f5edf0;
+}
+
+input::placeholder {
+  color: #f5edf0;
+}
+
+.snow input {
+  border-bottom: 1px solid #a2708a;
+}
+
+.snow input::-moz-placeholder {
+  color: #a2708a;
+}
+
+.snow input,
+.snow input::placeholder {
+  color: #a2708a;
+}
+
+.linksContainer {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+.link:hover {
+  font-size: 24px;
+}
+
+.link.active {
+  font-weight: 600;
+  font-size: 3rem;
+  text-decoration: none;
+}
+
+.infoContainer {
+  margin-top: 80px;
+  position: relative;
+}
+
+.day {
+  font-size: 40px;
+  font-weight: 100;
+}
+
+.location {
+  margin-top: 1em;
+}
+
+.city {
+  font-size: 70px;
+  font-weight: 400;
+}
+
+.country {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.temp {
+  font-size: 15rem;
+  position: absolute;
+  top: 800px;
+  font-weight: 500;
+}
+
+.desc {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 6rem;
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+
+.decorations {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.fake-img {
+  min-height: 700px;
+  min-width: 700px;
+  height: 70vw;
+  width: 70vw;
+  border-radius: 50%;
+  background-color: #ce2d35;
+  border: 50px solid black;
+}
+
+.decoration {
+  background-color: rgba(0, 0, 0, 0.319);
+}
+
+.line {
+  left: 0px;
+  top: 600px;
+  height: 20px;
+  width: 400px;
+  position: absolute;
+}
+
+.line2 {
+  top: 650px;
+  width: 300px;
+}
+
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  position: relative;
+  top: 100px;
+  right: -75px;
+}
+
+.weatherEntryContainer {
+  border: 1px solid grey;
+}/*# sourceMappingURL=styles.css.map */
