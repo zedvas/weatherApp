@@ -81,7 +81,10 @@ export default function updateHTML(weatherObj) {
             null,
             "div",
             "dateStringContainer"
-          );
+          );const image = document.createElement("img")
+image.src = `https://openweathermap.org/img/wn/${icon}@2x.png`
+          highestTempContainerRef.append(image)
+
           const mainDay = createHTML(day, "span", "day");
           const mainDate = createHTML(date, "span", "date");
           const mainMonth = createHTML(month, "span", "month");
@@ -90,7 +93,7 @@ export default function updateHTML(weatherObj) {
           dateStringContainer.append(mainMonth);
           highestTempContainerRef.append(dateStringContainer);
 
-          const mainTemp = createHTML(temp, "h2", "tempp");
+          const mainTemp = createHTML(temp, "h2", "temp");
           const mainDesc = createHTML(desc, "p", "desc");
           highestTempContainerRef.append(mainTemp);
           highestTempContainerRef.append(mainDesc);

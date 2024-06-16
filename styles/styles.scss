@@ -1,32 +1,32 @@
-$snow-primary: #bfd7ea;
-$snow-secondary: #a2708a;
-$rain-primary: #0b3954;
-$rain-secondary: #f5edf0;
-$clouds-primary: #087e8b;
-$clouds-secondary: #65532f;
-$sun-primary: #ce2d35;
-$sun-secondary: #ffa630;
+$paleblue: #bfd7ea;
+$mauve: #a2708a;
+$navy: #0b3954;
+$palepink: #f5edf0;
+$teal: #087e8b;
+$red: #ce2d35;
+$orange: #ffa630;
 
 :root {
   font-family: "IBM Plex Sans";
 }
 
-.sun {
-  background-color: $sun-secondary;
-  color: $rain-secondary;
+.sunnyDay {
+  background-color: $orange;
+  color: $palepink;
 }
-.snow {
-  background-color: $snow-primary;
-  color: $snow-secondary;
+.snowyDay {
+  background-color: $paleblue;
+  color: $mauve;
 }
-.rain {
-  background-color: $rain-primary;
-  color: $rain-secondary;
+.rainyDay {
+  background-color: $navy;
+  color: $palepink;
 }
-.clouds {
-  background-color: $clouds-primary;
-  color: $rain-secondary;
+.cloudyDay {
+  background-color: $teal;
+  color: $palepink;
 }
+
 body {
   display: flex;
   justify-content: center;
@@ -36,19 +36,16 @@ body {
 .container {
   padding: 100px 0;
   width: 80vw;
-  // height: 100%;
+  // height: 100vh;
   max-width: 1600px;
-  //   border: 1px solid yellow;
   position: relative;
 }
 
-// .nav-container {
-//   // border:1px solid red;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-// }
+
+.temp::after {
+content:'\00B0 \0063'
+
+}
 form {
   text-align: center;
 }
@@ -58,21 +55,21 @@ input {
   text-align: center;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #f5edf0;
-  color: #f5edf0;
+  border-bottom: 1px solid $palepink;
+  color: $palepink;
   padding: 0.8em 0;
   font-size: 2.4rem;
   margin-bottom: 2em;
 }
 input::placeholder {
-  color: #f5edf0;
+  color: $palepink;
 }
-.snow input {
-  border-bottom: 1px solid $snow-secondary;
+.snowyDay input {
+  border-bottom: 1px solid $mauve;
 }
-.snow input,
-.snow input::placeholder {
-  color: $snow-secondary;
+.snowyDay input,
+.snowyDay input::placeholder {
+  color: $navy;
 }
 .linksContainer {
   width: 100%;
@@ -97,13 +94,8 @@ input::placeholder {
 }
 
 .infoContainer {
-  margin-top: 80px;
   position: relative;
-}
-
-.day {
-  font-size: 40px;
-  font-weight: 100;
+  top: 300px;
 }
 
 .location {
@@ -118,8 +110,54 @@ input::placeholder {
   font-weight: 400;
 }
 
+
+//highest temp container
+.highestTempContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.highestTempContainer .dateStringContainer {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.highestTempContainer .temp {
+  font-size: 30rem;
+}
+
+
+.highestTempContainer  .desc{
+  writing-mode: vertical-rl;
+  text-orientation: sideways-right;
+  font-size: 4rem;
+  width: 100px
+}
+
+.highestTempContainer .img {
+  height: 200px;
+}
+
+//hourly entries
 .weatherEntryContainer {
+  width: 100%;
   border-bottom: 1px  solid rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+.hourlyDetails {
+  width: 30%;
+}
+
+.hourlyDetails p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hourlyOverview .time {
+  font-size: 7rem;
 }
 
 .highestTempContainer {
