@@ -1,5 +1,6 @@
 import createHTML from "./createHTML.js";
 import { entriesContainerRef } from "./domReferences.js";
+import { bodyRef } from "./domReferences.js";
 
 export default function updateHTML(weatherObj) {
   entriesContainerRef.innerHTML = "";
@@ -33,7 +34,6 @@ export default function updateHTML(weatherObj) {
       }
 
       for (const hourlyData of activeDay) {
-        console.log(hourlyData);
 
         let {
           dt,
@@ -81,9 +81,28 @@ export default function updateHTML(weatherObj) {
             null,
             "div",
             "dateStringContainer"
-          );const image = document.createElement("img")
-image.src = `https://openweathermap.org/img/wn/${icon}@2x.png`
-          highestTempContainerRef.append(image)
+          );
+          const image = document.createElement("img");
+          image.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+          highestTempContainerRef.append(image);
+
+          //horrific. refactor
+          let weatherType = "";
+          if (icon.startsWith("01") || icon.startsWith("02")) {
+            weatherType = "sunnyDay";
+          }
+          if (icon.startsWith("03") || icon.startsWith("04")) {
+            weatherType = "cloudyDay";
+          }
+          if (icon.startsWith("09") || icon.startsWith("10")|| icon.startsWith("11")) {
+            weatherType = "rainyDay";
+          }
+          if (icon.startsWith("13") || icon.startsWith("50")) {
+            weatherType = "snowyDay";
+          }
+          bodyRef.classList=[];
+
+          bodyRef.classList.add(weatherType)
 
           const mainDay = createHTML(day, "span", "day");
           const mainDate = createHTML(date, "span", "date");

@@ -1,6 +1,7 @@
 import createHTML from "./createHTML.js";
 
 const rootRef = document.getElementById("root");
+const bodyRef = document.getElementsByTagName("body")[0];
 const containerRef = document.getElementsByClassName("container")[0];
 let linksContainerRef = createHTML("", "div", "linksContainer");
 let infoContainerRef = createHTML("", "div", "infoContainer");
@@ -13,6 +14,7 @@ resultsContainerRef.append(infoContainerRef);
 resultsContainerRef.append(entriesContainerRef);
 
 export {
+  bodyRef,
   rootRef,
   containerRef,
   linksContainerRef,
