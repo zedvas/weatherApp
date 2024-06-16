@@ -3,8 +3,13 @@ import { entriesContainerRef } from "./domReferences.js";
 import { bodyRef } from "./domReferences.js";
 
 export default function updateHTML(weatherObj) {
-  entriesContainerRef.innerHTML = "";
+
+  //remove existig HTML
+  entriesContainerRef.innerHTML = ""; //check if this is actually doing anything?
+
   for (const day in weatherObj) {
+
+    //pull out key with active property
     if (weatherObj[day].active) {
       const activeDay = weatherObj[day];
       let highestTemp;
@@ -14,9 +19,11 @@ export default function updateHTML(weatherObj) {
         "highestTempContainer"
       );
 
+//loop through hourly entries for the active day and grab temp
       for (const hourlyWeatherData of activeDay) {
         const hourlyWeatherTemp = hourlyWeatherData.main.temp;
 
+//create variable which stores highest temp of the day
         if (highestTemp) {
           if (hourlyWeatherTemp > highestTemp) {
             highestTemp = hourlyWeatherTemp;
@@ -28,11 +35,14 @@ export default function updateHTML(weatherObj) {
       for (const hourlyWeatherData of activeDay) {
         const hourlyWeatherTemp = hourlyWeatherData.main.temp;
 
+//loop through all hourly data and grab the entry which matches the temp stored in highestTemp variable
+//for that entry add property of highestTemp
         if (highestTemp === hourlyWeatherTemp) {
           hourlyWeatherData.highestTemp = true;
         }
       }
 
+//loop through all hours. extract and format relevant info
       for (const hourlyData of activeDay) {
 
         let {
@@ -86,7 +96,8 @@ export default function updateHTML(weatherObj) {
           image.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
           highestTempContainerRef.append(image);
 
-          //horrific. refactor
+          //horrific. condense. switch statement?
+          //depending on icon, add class to body to change colour theme
           let weatherType = "";
           if (icon.startsWith("01") || icon.startsWith("02")) {
             weatherType = "sunnyDay";
@@ -100,10 +111,12 @@ export default function updateHTML(weatherObj) {
           if (icon.startsWith("13") || icon.startsWith("50")) {
             weatherType = "snowyDay";
           }
+          //remove any existing class
           bodyRef.classList=[];
 
           bodyRef.classList.add(weatherType)
 
+          //create DOM nodes
           const mainDay = createHTML(day, "span", "day");
           const mainDate = createHTML(date, "span", "date");
           const mainMonth = createHTML(month, "span", "month");
