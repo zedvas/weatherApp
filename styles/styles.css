@@ -1,23 +1,24 @@
+@charset "UTF-8";
 :root {
   font-family: "IBM Plex Sans";
 }
 
-.sun {
+.sunnyDay {
   background-color: #ffa630;
   color: #f5edf0;
 }
 
-.snow {
+.snowyDay {
   background-color: #bfd7ea;
   color: #a2708a;
 }
 
-.rain {
+.rainyDay {
   background-color: #0b3954;
   color: #f5edf0;
 }
 
-.clouds {
+.cloudyDay {
   background-color: #087e8b;
   color: #f5edf0;
 }
@@ -33,6 +34,10 @@ body {
   width: 80vw;
   max-width: 1600px;
   position: relative;
+}
+
+.temp::after {
+  content: "°c";
 }
 
 form {
@@ -60,17 +65,17 @@ input::placeholder {
   color: #f5edf0;
 }
 
-.snow input {
+.snowyDay input {
   border-bottom: 1px solid #a2708a;
 }
 
-.snow input::-moz-placeholder {
-  color: #a2708a;
+.snowyDay input::-moz-placeholder {
+  color: #0b3954;
 }
 
-.snow input,
-.snow input::placeholder {
-  color: #a2708a;
+.snowyDay input,
+.snowyDay input::placeholder {
+  color: #0b3954;
 }
 
 .linksContainer {
@@ -97,13 +102,8 @@ input::placeholder {
 }
 
 .infoContainer {
-  margin-top: 80px;
   position: relative;
-}
-
-.day {
-  font-size: 40px;
-  font-weight: 100;
+  top: 300px;
 }
 
 .location {
@@ -120,67 +120,55 @@ input::placeholder {
   font-weight: 400;
 }
 
-.temp {
-  font-size: 15rem;
-  position: absolute;
-  top: 800px;
-  font-weight: 500;
-}
-
-.desc {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  font-size: 6rem;
-  position: absolute;
-  right: 0;
-  top: 12px;
-}
-
-.decorations {
-  height: 100%;
-  width: 100%;
+.highestTempContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
 }
 
-.fake-img {
-  min-height: 700px;
-  min-width: 700px;
-  height: 70vw;
-  width: 70vw;
-  border-radius: 50%;
-  background-color: #ce2d35;
-  border: 50px solid black;
+.highestTempContainer .dateStringContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.decoration {
-  background-color: rgba(0, 0, 0, 0.319);
+.highestTempContainer .temp {
+  font-size: 30rem;
 }
 
-.line {
-  left: 0px;
-  top: 600px;
-  height: 20px;
-  width: 400px;
-  position: absolute;
-}
-
-.line2 {
-  top: 650px;
-  width: 300px;
-}
-
-.circle {
-  height: 100px;
+.highestTempContainer .desc {
+  writing-mode: vertical-rl;
+  text-orientation: sideways-right;
+  font-size: 4rem;
   width: 100px;
-  border-radius: 50%;
-  position: relative;
-  top: 100px;
-  right: -75px;
+}
+
+.highestTempContainer .img {
+  height: 200px;
 }
 
 .weatherEntryContainer {
-  border: 1px solid grey;
+  width: 100%;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.hourlyDetails {
+  width: 30%;
+}
+
+.hourlyDetails p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hourlyOverview .time {
+  font-size: 7rem;
+}
+
+.highestTempContainer {
+  height: 60vh;
 }/*# sourceMappingURL=styles.css.map */
