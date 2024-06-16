@@ -1,4 +1,5 @@
 import handleWeather from "./handleWeather.js";
+import handleWeather2 from "./handleWeather2.js";
 import { API_KEY } from "./secrets.js";
 
 export default async function getWeather(lat, lon, searchTerm) {
@@ -22,7 +23,7 @@ export default async function getWeather(lat, lon, searchTerm) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     let result = await fetch(url);
     result = await result.json();
-    handleWeather(result);
+    handleWeather2(result);
   } catch (e) {
     console.log(e);
   }
