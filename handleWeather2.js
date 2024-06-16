@@ -10,9 +10,10 @@ import {
 import updateHTML from "./updateHTML.js";
 import setCurrentDay from "./setCurrentDay.js";
 import updateHTML2 from "./updateHTML2.js";
+
 function handleWeather2(result) {
   //clear all existing results
-  [linksContainerRef, infoContainerRef, entriesContainerRef].forEach((node) => {
+  [linksContainerRef, infoContainerRef].forEach((node) => {
     node.innerHTML = "";
   });
 
