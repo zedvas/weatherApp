@@ -94,25 +94,45 @@ export default function updateHTML(weatherObj) {
           image.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
           highestTempInfoRef.append(image);
 
-          //horrific. condense. switch statement?
           //depending on icon, add class to body to change colour theme
           let weatherType = "";
-          if (icon.startsWith("01") || icon.startsWith("02")) {
-            weatherType = "sunnyDay";
+          const iconCode = icon.slice(0, 2);
+          console.log(iconCode);
+          switch (iconCode) {
+            case "01":
+            case "02":
+              weatherType = "sunnyDay";
+              break;
+            case "03":
+            case "04":
+              weatherType = "cloudyDay";
+              break;
+            case "09":
+            case "10":
+            case "11":
+              weatherType = "rainyDay";
+              break;
+            case "13":
+            case "50":
+              weatherType = "snowyDay";
+              break;
           }
-          if (icon.startsWith("03") || icon.startsWith("04")) {
-            weatherType = "cloudyDay";
-          }
-          if (
-            icon.startsWith("09") ||
-            icon.startsWith("10") ||
-            icon.startsWith("11")
-          ) {
-            weatherType = "rainyDay";
-          }
-          if (icon.startsWith("13") || icon.startsWith("50")) {
-            weatherType = "snowyDay";
-          }
+          // if (icon.startsWith("01") || icon.startsWith("02")) {
+          //   weatherType = "sunnyDay";
+          // }
+          // if (icon.startsWith("03") || icon.startsWith("04")) {
+          //   weatherType = "cloudyDay";
+          // }
+          // if (
+          //   icon.startsWith("09") ||
+          //   icon.startsWith("10") ||
+          //   icon.startsWith("11")
+          // ) {
+          //   weatherType = "rainyDay";
+          // }
+          // if (icon.startsWith("13") || icon.startsWith("50")) {
+          //   weatherType = "snowyDay";
+          // }
           //remove any existing class
           bodyRef.classList = [];
 
