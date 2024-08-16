@@ -3,8 +3,8 @@ import { entriesContainerRef } from "./domReferences.js";
 import { bodyRef } from "./domReferences.js";
 
 export default function updateHTML(weatherObj) {
-  //remove existig HTML
-  entriesContainerRef.innerHTML = ""; //check if this is actually doing anything?
+  //remove existing HTML
+  entriesContainerRef.innerHTML = ""; 
 
   for (const day in weatherObj) {
     //pull out key with active property
@@ -97,7 +97,7 @@ export default function updateHTML(weatherObj) {
           //depending on icon, add class to body to change colour theme
           let weatherType = "";
           const iconCode = icon.slice(0, 2);
-          console.log(iconCode);
+
           switch (iconCode) {
             case "01":
             case "02":
