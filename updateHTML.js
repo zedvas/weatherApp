@@ -3,12 +3,10 @@ import { entriesContainerRef } from "./domReferences.js";
 import { bodyRef } from "./domReferences.js";
 
 export default function updateHTML(weatherObj) {
-
   //remove existig HTML
   entriesContainerRef.innerHTML = ""; //check if this is actually doing anything?
 
   for (const day in weatherObj) {
-
     //pull out key with active property
     if (weatherObj[day].active) {
       const activeDay = weatherObj[day];
@@ -18,12 +16,13 @@ export default function updateHTML(weatherObj) {
         "div",
         "highestTempContainer"
       );
+      const highestTempInfoRef = createHTML(null, "div", "highestTempInfo");
 
-//loop through hourly entries for the active day and grab temp
+      //loop through hourly entries for the active day and grab temp
       for (const hourlyWeatherData of activeDay) {
         const hourlyWeatherTemp = hourlyWeatherData.main.temp;
 
-//create variable which stores highest temp of the day
+        //create variable which stores highest temp of the day
         if (highestTemp) {
           if (hourlyWeatherTemp > highestTemp) {
             highestTemp = hourlyWeatherTemp;
@@ -35,16 +34,15 @@ export default function updateHTML(weatherObj) {
       for (const hourlyWeatherData of activeDay) {
         const hourlyWeatherTemp = hourlyWeatherData.main.temp;
 
-//loop through all hourly data and grab the entry which matches the temp stored in highestTemp variable
-//for that entry add property of highestTemp
+        //loop through all hourly data and grab the entry which matches the temp stored in highestTemp variable
+        //for that entry add property of highestTemp
         if (highestTemp === hourlyWeatherTemp) {
           hourlyWeatherData.highestTemp = true;
         }
       }
 
-//loop through all hours. extract and format relevant info
+      //loop through all hours. extract and format relevant info
       for (const hourlyData of activeDay) {
-
         let {
           dt,
           main: { temp, humidity },
@@ -94,7 +92,7 @@ export default function updateHTML(weatherObj) {
           );
           const image = document.createElement("img");
           image.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-          highestTempContainerRef.append(image);
+          highestTempInfoRef.append(image);
 
           //horrific. condense. switch statement?
           //depending on icon, add class to body to change colour theme
@@ -105,16 +103,20 @@ export default function updateHTML(weatherObj) {
           if (icon.startsWith("03") || icon.startsWith("04")) {
             weatherType = "cloudyDay";
           }
-          if (icon.startsWith("09") || icon.startsWith("10")|| icon.startsWith("11")) {
+          if (
+            icon.startsWith("09") ||
+            icon.startsWith("10") ||
+            icon.startsWith("11")
+          ) {
             weatherType = "rainyDay";
           }
           if (icon.startsWith("13") || icon.startsWith("50")) {
             weatherType = "snowyDay";
           }
           //remove any existing class
-          bodyRef.classList=[];
+          bodyRef.classList = [];
 
-          bodyRef.classList.add(weatherType)
+          bodyRef.classList.add(weatherType);
 
           //create DOM nodes
           const mainDay = createHTML(day, "span", "day");
@@ -123,11 +125,11 @@ export default function updateHTML(weatherObj) {
           dateStringContainer.append(mainDay);
           dateStringContainer.append(mainDate);
           dateStringContainer.append(mainMonth);
-          highestTempContainerRef.append(dateStringContainer);
+          highestTempInfoRef.append(dateStringContainer);
 
           const mainTemp = createHTML(temp, "h2", "temp");
           const mainDesc = createHTML(desc, "p", "desc");
-          highestTempContainerRef.append(mainTemp);
+          highestTempInfoRef.append(mainTemp);
           highestTempContainerRef.append(mainDesc);
         }
         const weatherEntryContainerRef = createHTML(
@@ -161,7 +163,7 @@ export default function updateHTML(weatherObj) {
 
         const _windspeed = createHTML(windspeed, "span", "windspeed");
         const windspeedContainer = createHTML(
-          "windspeed:",
+          "wind:",
           "p",
           "windspeedContainer"
         );
@@ -178,7 +180,7 @@ export default function updateHTML(weatherObj) {
 
         entriesContainerRef.append(weatherEntryContainerRef);
       }
-
+      highestTempContainerRef.prepend(highestTempInfoRef);
       entriesContainerRef.prepend(highestTempContainerRef);
     }
   }

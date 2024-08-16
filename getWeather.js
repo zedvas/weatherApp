@@ -10,8 +10,9 @@ export default async function getWeather(lat, lon, searchTerm) {
   //if search term was passed through, use the geocoding api to get co-ords
   else if (searchTerm) {
     let result = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm},gb&limit=5&appid=${API_KEY}`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=1&appid=${API_KEY}`
     );
+    console.log("fetch")
 
     result = await result.json();
     [lat, lon] = [result[0].lat, result[0].lon];
@@ -20,6 +21,7 @@ export default async function getWeather(lat, lon, searchTerm) {
   //fetch data
   try {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    console.log("fetch")
     let result = await fetch(url);
     result = await result.json();
     handleWeather(result);

@@ -6,6 +6,13 @@ $teal: #087e8b;
 $red: #ce2d35;
 $orange: #ffa630;
 
+@mixin flex($justify: flex-start, $align: flex-start, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
 :root {
   font-family: "IBM Plex Sans";
 }
@@ -28,31 +35,28 @@ $orange: #ffa630;
 }
 
 body {
-  display: flex;
-  justify-content: center;
+  @include flex($justify:center);
   font-size: 2rem;
 }
 
 .container {
-  padding: 100px 0;
+  padding: 1em;
   width: 80vw;
-  // height: 100vh;
-  max-width: 1600px;
-  position: relative;
+  max-width: 900px;
 }
-
 
 .temp::after {
-content:'\00B0 \0063'
+  content: "\00B0 \0063";
+}
 
-}
 form {
-  text-align: center;
+  @include flex($justify:center, $align: center);
 }
+
 input {
-  width: 50%;
-  min-width: 500px;
   text-align: center;
+  width: 80%;
+  max-width: 500px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid $palepink;
@@ -61,26 +65,30 @@ input {
   font-size: 2.4rem;
   margin-bottom: 2em;
 }
+
 input::placeholder {
   color: $palepink;
 }
+
 .snowyDay input {
   border-bottom: 1px solid $mauve;
 }
+
 .snowyDay input,
 .snowyDay input::placeholder {
   color: $navy;
 }
+
 .linksContainer {
   width: 100%;
   text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex($justify:space-between, $align: center);
 }
+
 .link {
   text-decoration: underline;
   text-underline-offset: 10px;
+  margin-bottom: 1em;
 }
 
 .link:hover {
@@ -94,72 +102,81 @@ input::placeholder {
 }
 
 .infoContainer {
-  position: relative;
-  top: 300px;
+  margin-bottom: -2em;
 }
 
 .location {
   margin-top: 1em;
 }
 .city {
-  font-size: 70px;
+  font-size: 5rem;
   font-weight: 400;
 }
 .country {
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: 400;
 }
 
-
-//highest temp container
 .highestTempContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex($justify:center, $align: flex-end);
+  margin-bottom: 2em;
 }
+
 .highestTempContainer .dateStringContainer {
-  display:flex;
-  flex-direction: column;
-  align-items: flex-end;
+  @include flex($align: flex-end, $direction: column);
 }
+
 .highestTempContainer .temp {
-  font-size: 30rem;
+  font-size: 10rem;
 }
 
-
-.highestTempContainer  .desc{
+// @media screen and (min-width: 600px) {
+//   .highestTempContainer {
+//     flex-direction: row;
+//   }
+// }
+.highestTempContainer .desc {
   writing-mode: vertical-rl;
   text-orientation: sideways-right;
   font-size: 4rem;
-  width: 100px
+  margin: 0 0 0.2em 1em;
 }
 
-.highestTempContainer .img {
+.highestTempContainer img {
   height: 200px;
+  margin-bottom: -1em;
 }
 
-//hourly entries
+// //hourly entries
 .weatherEntryContainer {
   width: 100%;
-  border-bottom: 1px  solid rgb(255, 255, 255);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  @include flex($justify:space-between, $align: center);
   margin: 2rem 0;
 }
+
 .hourlyDetails {
-  width: 30%;
+  min-width: 111px;
 }
 
 .hourlyDetails p {
-  display: flex;
-  justify-content: space-between;
+  @include flex($justify:space-between);
 }
 
 .hourlyOverview .time {
-  font-size: 7rem;
+  font-size: 5rem;
 }
 
-.highestTempContainer {
-  height: 60vh;
+.tempContainer,
+.humidityContainer,
+.windspeedContainer {
+  font-size: 1.5rem;
+  font-weight: 200;
+  @include flex($justify:center, $align: center);
+  margin-bottom: 1em;
+}
+
+.hourlyDetails span {
+  font-size: 2rem;
+  font-weight: 600;
 }

@@ -26,14 +26,15 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
   font-size: 2rem;
 }
 
 .container {
-  padding: 100px 0;
+  padding: 1em;
   width: 80vw;
-  max-width: 1600px;
-  position: relative;
+  max-width: 900px;
 }
 
 .temp::after {
@@ -41,13 +42,16 @@ body {
 }
 
 form {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 input {
-  width: 50%;
-  min-width: 500px;
   text-align: center;
+  width: 80%;
+  max-width: 500px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #f5edf0;
@@ -84,11 +88,13 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
 }
 
 .link {
   text-decoration: underline;
   text-underline-offset: 10px;
+  margin-bottom: 1em;
 }
 
 .link:hover {
@@ -102,8 +108,7 @@ input::placeholder {
 }
 
 .infoContainer {
-  position: relative;
-  top: 300px;
+  margin-bottom: -2em;
 }
 
 .location {
@@ -111,40 +116,44 @@ input::placeholder {
 }
 
 .city {
-  font-size: 70px;
+  font-size: 5rem;
   font-weight: 400;
 }
 
 .country {
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: 400;
 }
 
 .highestTempContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  flex-direction: row;
+  margin-bottom: 2em;
 }
 
 .highestTempContainer .dateStringContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-end;
+  flex-direction: column;
 }
 
 .highestTempContainer .temp {
-  font-size: 30rem;
+  font-size: 10rem;
 }
 
 .highestTempContainer .desc {
   writing-mode: vertical-rl;
   text-orientation: sideways-right;
   font-size: 4rem;
-  width: 100px;
+  margin: 0 0 0.2em 1em;
 }
 
-.highestTempContainer .img {
+.highestTempContainer img {
   height: 200px;
+  margin-bottom: -1em;
 }
 
 .weatherEntryContainer {
@@ -153,22 +162,38 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
   margin: 2rem 0;
 }
 
 .hourlyDetails {
-  width: 30%;
+  min-width: 111px;
 }
 
 .hourlyDetails p {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
 }
 
 .hourlyOverview .time {
-  font-size: 7rem;
+  font-size: 5rem;
 }
 
-.highestTempContainer {
-  height: 60vh;
+.tempContainer,
+.humidityContainer,
+.windspeedContainer {
+  font-size: 1.5rem;
+  font-weight: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.hourlyDetails span {
+  font-size: 2rem;
+  font-weight: 600;
 }/*# sourceMappingURL=styles.css.map */
