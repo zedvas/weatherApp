@@ -6,7 +6,7 @@ export default async function getWeather(lat = 0, lon = 0, searchTerm) {
   if (searchTerm) {
     try {
       let result = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=1&appid=${API_KEY}`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=1&appid=${API_KEY}`
       );
       result = await result.json();
       [lat, lon] = [result[0].lat, result[0].lon];
