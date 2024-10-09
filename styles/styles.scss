@@ -35,7 +35,7 @@ $orange: #ffa630;
 }
 
 body {
-  @include flex($justify:center);
+  @include flex($justify: center);
   font-size: 2rem;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 form {
-  @include flex($justify:center, $align: center);
+  @include flex($justify: center, $align: center);
 }
 
 input {
@@ -82,23 +82,25 @@ input::placeholder {
 .linksContainer {
   width: 100%;
   text-align: center;
-  @include flex($justify:space-between, $align: center);
+  @include flex($justify: space-between, $align: center);
 }
 
 .link {
-  text-decoration: underline;
-  text-underline-offset: 10px;
   margin-bottom: 1em;
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .link:hover {
-  font-size: 24px;
+  opacity: 1;
+  font-weight: 900;
 }
 
 .link.active {
-  font-weight: 600;
-  font-size: 3rem;
-  text-decoration: none;
+  font-weight: 900;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 10px;
 }
 
 .infoContainer {
@@ -118,7 +120,7 @@ input::placeholder {
 }
 
 .highestTempContainer {
-  @include flex($justify:center, $align: flex-end);
+  @include flex($justify: center, $align: flex-end);
   margin-bottom: 2em;
 }
 
@@ -151,7 +153,7 @@ input::placeholder {
 .weatherEntryContainer {
   width: 100%;
   border-bottom: 1px solid rgb(255, 255, 255);
-  @include flex($justify:space-between, $align: center);
+  @include flex($justify: space-between, $align: center);
   margin: 2rem 0;
 }
 
@@ -160,7 +162,7 @@ input::placeholder {
 }
 
 .hourlyDetails p {
-  @include flex($justify:space-between);
+  @include flex($justify: space-between);
 }
 
 .hourlyOverview .time {
@@ -172,7 +174,7 @@ input::placeholder {
 .windspeedContainer {
   font-size: 1.5rem;
   font-weight: 200;
-  @include flex($justify:center, $align: center);
+  @include flex($justify: center, $align: center);
   margin-bottom: 1em;
 }
 

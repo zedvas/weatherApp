@@ -92,19 +92,21 @@ input::placeholder {
 }
 
 .link {
-  text-decoration: underline;
-  text-underline-offset: 10px;
   margin-bottom: 1em;
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .link:hover {
-  font-size: 24px;
+  opacity: 1;
+  font-weight: 900;
 }
 
 .link.active {
-  font-weight: 600;
-  font-size: 3rem;
-  text-decoration: none;
+  font-weight: 900;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 10px;
 }
 
 .infoContainer {

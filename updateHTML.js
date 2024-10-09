@@ -1,15 +1,16 @@
 import createHTML from "./createHTML.js";
 import { entriesContainerRef } from "./domReferences.js";
 import { bodyRef } from "./domReferences.js";
+import { linksContainerRef } from "./domReferences.js";
 
 export default function updateHTML(weatherObj) {
   //remove existing HTML
-  entriesContainerRef.innerHTML = ""; 
-
+  entriesContainerRef.innerHTML = "";
   for (const day in weatherObj) {
     //pull out key with active property
     if (weatherObj[day].active) {
       const activeDay = weatherObj[day];
+
       let highestTemp;
       const highestTempContainerRef = createHTML(
         null,
@@ -83,6 +84,20 @@ export default function updateHTML(weatherObj) {
         const date = dateTimestamp.getDate();
         const month = months[dateTimestamp.getMonth()];
         const hours = dateTimestamp.getHours();
+
+        //add active class to link
+        const links = linksContainerRef.children;
+        const linkIndex = Array.from(links).findIndex(
+          (link) => link.innerHTML === date.toString()
+        );
+        links[linkIndex].classList.add("active");
+
+        //remove active class from other links
+        Array.from(links).forEach((link, index) => {
+          if (index !== linkIndex) {
+            link.classList.remove("active");
+          }
+        });
 
         if (hourlyData.highestTemp) {
           const dateStringContainer = createHTML(
